@@ -57,7 +57,6 @@ export default function FlipBook() {
           ====================================================== */}
 
           <div
-            style={{ backgroundColor: '#b50e0e' }}
             className="cover"
           >
             <img
