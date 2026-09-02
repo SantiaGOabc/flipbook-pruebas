@@ -1,17 +1,20 @@
 ---
-
+import FlipBook from '../components/FlipBook';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Mi FlipBook</title>
+  </head>
+
+  <header>
+	<div>HOLA</div>
+  </header>
+
+  <body>
+    <FlipBook client:only="react" />
+  </body>
 </html>

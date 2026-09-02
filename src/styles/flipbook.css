@@ -1,0 +1,457 @@
+.book-wrapper {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #5b0878 0%,
+      #3b034d 45%,
+      #18001e 100%
+    );
+}
+
+
+/* Luz ambiental */
+.book-wrapper::before {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 900px;
+  height: 900px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 106, 0, 0.12) 0%,
+      rgba(255, 106, 0, 0.04) 35%,
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  color: #1f2937;
+
+  overflow: hidden;
+}
+
+
+
+.cover {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #111;
+}
+
+
+.cover-image {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+.cover-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.10),
+      rgba(0, 0, 0, 0.30) 40%,
+      rgba(0, 0, 0, 0.88) 100%
+    );
+}
+
+
+.cover-content {
+  position: relative;
+
+  z-index: 2;
+
+  text-align: center;
+
+  color: white;
+
+  padding: 40px;
+}
+
+
+.cover-label {
+  display: block;
+
+  font-size: 12px;
+
+  letter-spacing: 4px;
+
+  margin-bottom: 25px;
+
+  opacity: 0.85;
+}
+
+
+.cover h1 {
+  margin: 0;
+
+  font-size: clamp(38px, 6vw, 64px);
+
+  font-weight: 700;
+
+  letter-spacing: -2px;
+
+  line-height: 1.05;
+}
+
+
+.cover p {
+  margin-top: 15px;
+
+  font-size: 18px;
+
+  opacity: 0.9;
+}
+
+
+.cover-line {
+  width: 60px;
+
+  height: 2px;
+
+  margin: 30px auto;
+
+  background: white;
+}
+
+
+.cover-author {
+  font-size: 14px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CONTENIDO
+   ========================================================= */
+
+.page-content {
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  padding: 55px 45px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+
+.eyebrow {
+  font-size: 11px;
+
+  letter-spacing: 3px;
+
+  font-weight: 700;
+
+  color: #ff6a00;
+
+  margin-bottom: 15px;
+
+  text-transform: uppercase;
+}
+
+
+.page h2 {
+  margin: 0 0 25px;
+
+  font-size: 34px;
+
+  line-height: 1.15;
+
+  color: #111827;
+
+  letter-spacing: -0.8px;
+}
+
+
+.page p {
+  font-size: 16px;
+
+  line-height: 1.7;
+
+  color: #4b5563;
+}
+
+
+.lead {
+  font-size: 19px !important;
+
+  line-height: 1.6 !important;
+
+  color: #1f2937 !important;
+}
+
+
+/* =========================================================
+   CITA
+   ========================================================= */
+
+.quote {
+  margin-top: auto;
+
+  padding: 20px;
+
+  border-left: 3px solid #ff6a00;
+
+  background: #f8f8f8;
+
+  font-style: italic;
+
+  color: #555;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   IMÁGENES
+   ========================================================= */
+
+.content-image {
+  width: 100%;
+
+  height: 350px;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+
+  margin-top: 10px;
+
+  display: block;
+}
+
+
+.caption {
+  margin-top: 12px !important;
+
+  font-size: 12px !important;
+
+  color: #888 !important;
+}
+
+
+/* =========================================================
+   VIDEOS
+   ========================================================= */
+
+.video-container {
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background: #000;
+
+  margin-top: 10px;
+
+  flex-shrink: 0;
+}
+
+
+.video-container video {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  background: #000;
+}
+
+
+/* =========================================================
+   CONTRAPORTADA
+   ========================================================= */
+
+.back-cover {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #263044 0%,
+      #111827 70%
+    );
+
+  color: white;
+}
+
+
+.back-content {
+  padding: 40px;
+}
+
+
+.back-content h2 {
+  color: white;
+
+  font-size: 32px;
+
+  margin-bottom: 15px;
+}
+
+
+.back-content p {
+  color: #d1d5db;
+}
+
+
+.back-line {
+  width: 50px;
+
+  height: 2px;
+
+  background: #ff6a00;
+
+  margin: 30px auto;
+}
+
+
+.back-content span {
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  color: #9ca3af;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  min-height: 400px;
+
+  font-size: 18px;
+
+  color: #666;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .page-content {
+    padding: 35px 28px;
+  }
+
+  .page h2 {
+    font-size: 28px;
+  }
+
+  .page p {
+    font-size: 14px;
+  }
+
+  .lead {
+    font-size: 17px !important;
+  }
+
+  .content-image {
+    height: 280px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .page-content {
+    padding: 25px 20px;
+  }
+
+  .page h2 {
+    font-size: 24px;
+  }
+
+  .cover-content {
+    padding: 25px;
+  }
+
+  .cover h1 {
+    font-size: 38px;
+  }
+
+  .cover p {
+    font-size: 15px;
+  }
+
+  .content-image {
+    height: 220px;
+  }
+}
