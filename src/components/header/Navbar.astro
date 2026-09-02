@@ -1,0 +1,16 @@
+---
+import { NAVIGATION } from '../../constants/header/navigation';
+---
+
+<header class="flex items-center justify-between w-full h-22 p-6 border-b border-white/10">
+  <a href="/" class="flex items-center gap-2 text-xl font-semibold text-zinc-300">
+    <span>M.R.V</span>
+  </a>
+  <nav class="flex items-center gap-4" aria-label="Navegación principal">
+    {
+      NAVIGATION.map((item) => (
+        <a href={item.href} class="text-sm font-medium text-zinc-200 hover:text-zinc-300 transition-colors">{item.label}</a>
+      ))
+    }
+  </nav>
+</header>
