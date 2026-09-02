@@ -508,6 +508,142 @@
 .nav-arrow--next { right: 24px; }
 
 /* =========================================================
+   HOJA DE CIERRE — foto del alcalde + "33" + despedida
+   ========================================================= */
+
+/* Foto en la columna izquierda, ocupando la mayor parte del alto. */
+.slide--cierre .slide__inner--cierre {
+  align-items: center;
+}
+
+.cierre__photo {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+}
+
+/* El "33" gigante va DETRÁS de la foto (menor z-index) y se nota por los
+   bordes de un busto recortado (la foto no tapa todo el cuadro). */
+.cierre__num {
+  position: absolute;
+  z-index: 0;
+  font-size: clamp(180px, 34vw, 460px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -12px;
+  color: rgba(219, 39, 119, 0.16);
+  text-shadow: 0 0 60px rgba(219, 39, 119, 0.25);
+  user-select: none;
+}
+
+.cierre__img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%; /* prioriza el busto (cabeza y hombros) */
+  /* Recorte elíptico: deja ver el "33" asomando por los laterales/bordes. */
+  -webkit-mask-image: radial-gradient(ellipse 62% 78% at 50% 42%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 62% 78% at 50% 42%, #000 62%, transparent 100%);
+}
+
+.slide__eyebrow--cierre {
+  color: #f472b6;
+}
+
+.slide__title--cierre {
+  font-size: clamp(24px, 3vw, 44px);
+}
+
+.slide__desc--cierre {
+  max-width: 52ch;
+}
+
+.cierre__next {
+  margin-top: 8px;
+  font-size: clamp(12px, 1.1vw, 15px);
+  letter-spacing: 1px;
+  color: #f9a8d4;
+}
+
+/* =========================================================
+   HOJA DE FIRMA — "Manfred Reyes Villa" escritura por steps
+   ========================================================= */
+
+.slide.signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.signature__wrap {
+  text-align: center;
+  padding: 40px;
+  max-width: 960px;
+  width: 100%;
+}
+
+.signature__kicker {
+  margin-bottom: 12px;
+  font-size: clamp(11px, 1vw, 13px);
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  color: #f472b6;
+}
+
+/* Tipografía de firma: cursiva elegante. */
+.signature__svg {
+  width: min(94%, 900px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  overflow: visible; /* nunca recorta los floreos de la cursiva */
+}
+
+.signature__text {
+  font-family: "Great Vibes", "Alex Brush", cursive;
+  font-size: 130px;
+  font-weight: 400;
+  fill: #fff;
+  filter: drop-shadow(0 4px 24px rgba(244, 114, 182, 0.35));
+}
+
+.signature__text tspan tspan {
+  opacity: 1; /* estado base: firma completa (la anima GSAP) */
+}
+
+.signature__rule {
+  width: 220px;
+  height: 2px;
+  margin: 18px auto 14px;
+  background: linear-gradient(90deg, transparent, #f472b6, transparent);
+  border-radius: 999px;
+}
+
+.signature__role {
+  margin: 0;
+  font-size: clamp(13px, 1.4vw, 18px);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e9d5ff;
+}
+
+.signature__span {
+  margin: 6px 0 0;
+  font-size: clamp(11px, 1vw, 14px);
+  letter-spacing: 1px;
+  color: #9d92b8;
+}
+
+/* =========================================================
    VISOR A PANTALLA COMPLETA (LIGHTBOX)
    ========================================================= */
 
@@ -639,6 +775,17 @@
   .deck {
     width: min(100%, 340px);
     margin: 0 auto;
+  }
+
+  /* Cierre: la foto queda en la columna donde va el texto (arriba). */
+  .cierre__photo {
+    width: 100%;
+    height: 46vh;
+    min-height: 260px;
+  }
+
+  .signature__svg {
+    width: 100%;
   }
 }
 

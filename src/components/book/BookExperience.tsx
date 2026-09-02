@@ -27,6 +27,9 @@ const SETTLE_DELAY = 140     // tras el ojeo, antes de mostrar el contenido
 
 const sections = bookContent.sections
 const FIRST_CONTENT_PAGE = 1 // referencia para sincronizar el libro con la sección
+// Páginas del slider: todas las secciones + 1 hoja final de "firma".
+const TOTAL_PAGES = sections.length + 1
+const LAST_SECTION_PAGE = sections.length - 1 // índice de la última sección ("Cierre")
 
 export default function BookExperience() {
   const [phase, setPhase] = useState<Phase>('intro')
@@ -86,12 +89,13 @@ export default function BookExperience() {
   const goTo = useCallback((delta: number) => {
     if (busyRef.current) return
     const next = index + delta
-    if (next < 0 || next >= sections.length) return
+    if (next < 0 || next >= TOTAL_PAGES) return
     busyRef.current = true
     setIndex(next)
     setDirection(delta)
     setNavCount((c) => c + 1)
-    bookRef.current?.flip(next + FIRST_CONTENT_PAGE)
+    // La hoja de la firma corresponde al final del libro (cierre de la tapa).
+    bookRef.current?.flip(Math.min(next, LAST_SECTION_PAGE) + FIRST_CONTENT_PAGE)
   }, [index])
 
   // Se llama cuando la transición del slider termina: desbloquea la navegación.
@@ -134,7 +138,7 @@ export default function BookExperience() {
           direction={direction}
           navKey={navCount}
           canPrev={index > 0}
-          canNext={index < sections.length - 1}
+          canNext={index < TOTAL_PAGES - 1}
           onPrev={() => goTo(-1)}
           onNext={() => goTo(1)}
           onRest={handleRest}

@@ -32,6 +32,7 @@ export type Transition = (ctx: TransitionContext) => gsap.core.Timeline
 export function hideReveal(el: HTMLElement): void {
   gsap.set(el.querySelectorAll('[data-reveal]'), { yPercent: 115 })
   gsap.set(el.querySelectorAll('[data-fade]'), { opacity: 0, y: 28 })
+  gsap.set(el.querySelectorAll('[data-slide-in]'), { xPercent: -100 })
 }
 
 /** Revela el texto (máscara) y las tarjetas de una hoja. */
@@ -39,10 +40,14 @@ export function revealChildren(el: HTMLElement, at: number | string = 0): gsap.c
   const tl = gsap.timeline()
   const masked = el.querySelectorAll('[data-reveal]')
   const faded = el.querySelectorAll('[data-fade]')
+  const slid = el.querySelectorAll('[data-slide-in]')
   const fadeAt = typeof at === 'number' ? at + 0.15 : at
 
   if (masked.length) {
     tl.to(masked, { yPercent: 0, duration: 0.7, ease: 'power4.out', stagger: 0.09 }, at)
+  }
+  if (slid.length) {
+    tl.to(slid, { xPercent: 0, duration: 0.9, ease: 'power3.out' }, at)
   }
   if (faded.length) {
     tl.to(faded, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, fadeAt)
