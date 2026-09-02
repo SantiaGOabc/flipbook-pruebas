@@ -11,9 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <div class="page">
-      <!-- LADO IZQUIERDO -->
-      <div class="left">
+    <main class="page">
+      <section class="left" aria-label="Presentación de Cochabamba">
         <div class="left-content">
           <h1>Cochabamba</h1>
           <p class="tagline">La Ciudad de la Eterna Primavera</p>
@@ -21,23 +20,22 @@
             Descubre la riqueza cultural, los sabores ancestrales y los paisajes
             que hacen de Cochabamba un destino único en el corazón de Sudamérica.
           </p>
-          <div class="actions">
+          <nav class="actions" aria-label="Acciones principales">
             <a href="#experiencia" class="btn-primary">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
               Iniciar la experiencia
             </a>
-          </div>
+          </nav>
         </div>
-      </div>
+      </section>
 
-      <!-- LADO DERECHO -->
-      <div class="right">
+      <section class="right" aria-label="Libro ilustrativo">
         <div class="book-scene">
-          <div class="book">
+          <div class="book" role="img" aria-label="Libro 3D de Cochabamba">
             <div class="book-cover book-front">
               <div class="cover-content">
                 <div class="cover-line"></div>
-                <span class="cover-label">GUIA TURISTICA</span>
+                <span class="cover-label">Guía Turística</span>
                 <h2 class="cover-title">Cochabamba</h2>
                 <p class="cover-year">2026</p>
                 <div class="cover-line"></div>
@@ -53,8 +51,8 @@
             <div class="book-spine"></div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   </body>
 </html>
 
@@ -84,16 +82,12 @@
   /* ===== LADO IZQUIERDO ===== */
   .left {
     width: 50%;
-    position: relative;
     display: flex;
     align-items: center;
     padding-left: 6%;
-    z-index: 1;
   }
 
   .left-content {
-    position: relative;
-    z-index: 2;
     max-width: 480px;
   }
 
@@ -150,9 +144,7 @@
     flex-shrink: 0;
   }
 
-  .left-bg {
-    display: none;
-  }
+
 
   /* ===== LADO DERECHO ===== */
   .right {
