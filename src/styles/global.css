@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+/* ========================================
+   LIBRO 3D
+   ======================================== */
+.book-scene {
+  perspective: 1200px;
+}
+
+.book {
+  position: relative;
+  width: 240px;
+  height: 340px;
+  transform-style: preserve-3d;
+  transform: rotateY(-22deg) rotateX(4deg);
+  transition: transform 0.6s ease;
+}
+
+.book:hover {
+  transform: rotateY(-10deg) rotateX(2deg);
+}
+
+.book-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 2px 12px 12px 2px;
+}
+
+.book-front {
+  background: linear-gradient(145deg, #2d1054, #1a0633 40%, #0f0318);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  transform: translateZ(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 40px rgba(124, 58, 237, 0.12),
+    inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.cover-inner {
+  text-align: center;
+  padding: 2rem;
+}
+
+.cover-rule {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #a855f7, transparent);
+  margin: 0.75rem auto;
+}
+
+.cover-category {
+  display: block;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(192, 132, 252, 0.5);
+  margin-bottom: 0.25rem;
+}
+
+.cover-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #e9d5ff;
+  letter-spacing: 0.5px;
+}
+
+.cover-year {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(168, 85, 247, 0.45);
+  letter-spacing: 6px;
+  margin-top: 0.25rem;
+}
+
+.book-back {
+  background: #110720;
+  border: 1px solid rgba(168, 85, 247, 0.08);
+  transform: translateZ(-18px) rotateY(180deg);
+}
+
+.book-stack {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 100%;
+  height: calc(100% - 8px);
+  transform-style: preserve-3d;
+}
+
+.book-page {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: linear-gradient(90deg, #e8e0f0, #f5f0fa 30%, #faf8fc);
+  border-radius: 1px 10px 10px 1px;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.book-page:nth-child(1) { transform: translateZ(12px); }
+.book-page:nth-child(2) { transform: translateZ(6px); }
+.book-page:nth-child(3) { transform: translateZ(0px); }
+.book-page:nth-child(4) { transform: translateZ(-6px); }
+
+.book-spine {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 36px;
+  height: 100%;
+  background: linear-gradient(90deg, #1a0633, #2d1054);
+  border-radius: 4px 0 0 4px;
+  transform: rotateY(90deg) translateZ(-18px);
+  transform-origin: left center;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 900px) {
+  .book {
+    width: 180px;
+    height: 260px;
+  }
+}
