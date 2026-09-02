@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import '../styles/flipbook.css';
 
 const ReactFlipBook = lazy(() =>
@@ -7,19 +7,41 @@ const ReactFlipBook = lazy(() =>
   }))
 );
 
+const BREAKPOINT = 900;
+
+function useDesktopMode() {
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(min-width: ${BREAKPOINT}px)`);
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  return isDesktop;
+}
+
 export default function FlipBook() {
+  const isDesktop = useDesktopMode();
+
   return (
     <div className="book-wrapper">
       <Suspense fallback={<div className="loading">Cargando libro...</div>}>
 
         <ReactFlipBook
+          key={isDesktop ? 'desktop' : 'mobile'}
+          className="book-stage"
+          style={{ width: '100%', height: '100%' }}
           width={500}
           height={700}
-          minWidth={300}
-          maxWidth={1000}
-          minHeight={400}
-          maxHeight={700}
+          minWidth={220}
+          maxWidth={1200}
+          minHeight={320}
+          maxHeight={900}
           size="stretch"
+          usePortrait={!isDesktop}
           showNavigationButtons={true}
           showPageNumbers={true}
           enableKeyboardNav={true}

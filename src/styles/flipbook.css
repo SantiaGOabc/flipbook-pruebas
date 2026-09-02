@@ -1,6 +1,9 @@
 .book-wrapper {
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
+  min-height: 0;
+
+  position: relative;
 
   display: flex;
   align-items: center;
@@ -182,18 +185,25 @@
 
   box-sizing: border-box;
 
-  padding: 55px 45px;
+  padding: clamp(20px, 4.5%, 48px);
 
   display: flex;
 
   flex-direction: column;
 
-  overflow: hidden;
+  overflow-y: auto;
+
+  overscroll-behavior: contain;
+}
+
+
+.image-flex-fill {
+  flex: 1 1 auto;
 }
 
 
 .eyebrow {
-  font-size: 11px;
+  font-size: clamp(9px, 1.4vw, 12px);
 
   letter-spacing: 3px;
 
@@ -201,40 +211,181 @@
 
   color: #ff6a00;
 
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 
   text-transform: uppercase;
+
+  flex-shrink: 0;
 }
 
 
 .page h2 {
-  margin: 0 0 25px;
+  margin: 0 0 16px;
 
-  font-size: 34px;
+  font-size: clamp(22px, 3.2vw, 36px);
 
-  line-height: 1.15;
+  line-height: 1.12;
 
   color: #111827;
 
-  letter-spacing: -0.8px;
+  letter-spacing: -0.6px;
+
+  flex-shrink: 0;
+}
+
+
+.page .section-title {
+  margin: 0 0 16px;
+
+  font-size: clamp(22px, 3.2vw, 36px);
+
+  line-height: 1.12;
+
+  color: #111827;
+
+  letter-spacing: -0.6px;
+
+  flex-shrink: 0;
+}
+
+
+.page h3,
+.page .sub-title {
+  margin: 14px 0 8px;
+
+  font-size: clamp(14px, 1.8vw, 18px);
+
+  color: #111827;
+
+  flex-shrink: 0;
 }
 
 
 .page p {
-  font-size: 16px;
+  font-size: clamp(13px, 1.5vw, 16px);
 
-  line-height: 1.7;
+  line-height: 1.55;
 
   color: #4b5563;
+
+  margin: 0 0 10px;
+
+  flex-shrink: 0;
 }
 
 
 .lead {
-  font-size: 19px !important;
+  font-size: clamp(15px, 1.9vw, 20px) !important;
 
-  line-height: 1.6 !important;
+  line-height: 1.5 !important;
 
   color: #1f2937 !important;
+}
+
+
+.page .page-content > p:last-child,
+.page .page-content > .lead:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   LISTAS
+   ========================================================= */
+
+.book-list {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+  gap: 8px 14px;
+
+  flex-shrink: 0;
+
+  align-content: start;
+}
+
+
+.book-list li {
+  position: relative;
+
+  padding-left: 16px;
+
+  font-size: clamp(12px, 1.4vw, 15px);
+
+  line-height: 1.4;
+
+  color: #374151;
+
+  break-inside: avoid;
+}
+
+
+.book-list li::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0.55em;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #ff6a00;
+}
+
+
+/* Categorías con ítems cortos (una sola columna, más compacta) */
+.book-list--compact {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  flex-shrink: 0;
+}
+
+
+.book-list--compact li {
+  position: relative;
+
+  padding-left: 16px;
+
+  font-size: clamp(12px, 1.4vw, 15px);
+
+  line-height: 1.35;
+
+  color: #374151;
+}
+
+
+.book-list--compact li::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0.55em;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #ff6a00;
 }
 
 
@@ -245,7 +396,7 @@
 .quote {
   margin-top: auto;
 
-  padding: 20px;
+  padding: clamp(12px, 2vw, 20px);
 
   border-left: 3px solid #ff6a00;
 
@@ -255,7 +406,11 @@
 
   color: #555;
 
-  line-height: 1.6;
+  line-height: 1.55;
+
+  font-size: clamp(13px, 1.5vw, 16px);
+
+  flex-shrink: 0;
 }
 
 
@@ -266,22 +421,24 @@
 .content-image {
   width: 100%;
 
-  height: 350px;
+  max-height: 55%;
 
   object-fit: cover;
 
   border-radius: 12px;
 
-  margin-top: 10px;
+  margin-top: 6px;
 
   display: block;
+
+  flex-shrink: 0;
 }
 
 
 .caption {
-  margin-top: 12px !important;
+  margin-top: 8px !important;
 
-  font-size: 12px !important;
+  font-size: clamp(11px, 1.2vw, 13px) !important;
 
   color: #888 !important;
 }
@@ -302,9 +459,11 @@
 
   background: #000;
 
-  margin-top: 10px;
+  margin-top: 6px;
 
   flex-shrink: 0;
+
+  max-height: 55%;
 }
 
 
@@ -408,23 +567,11 @@
 @media (max-width: 768px) {
 
   .page-content {
-    padding: 35px 28px;
+    padding: clamp(16px, 6%, 28px);
   }
 
-  .page h2 {
-    font-size: 28px;
-  }
-
-  .page p {
-    font-size: 14px;
-  }
-
-  .lead {
-    font-size: 17px !important;
-  }
-
-  .content-image {
-    height: 280px;
+  .book-list {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -432,11 +579,7 @@
 @media (max-width: 480px) {
 
   .page-content {
-    padding: 25px 20px;
-  }
-
-  .page h2 {
-    font-size: 24px;
+    padding: 20px 16px;
   }
 
   .cover-content {
@@ -449,9 +592,5 @@
 
   .cover p {
     font-size: 15px;
-  }
-
-  .content-image {
-    height: 220px;
   }
 }
