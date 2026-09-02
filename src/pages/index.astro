@@ -1,20 +1,10 @@
 ---
+import Layout from '../layouts/Layout.astro';
 import FlipBook from '../components/FlipBook';
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Mi FlipBook</title>
-  </head>
-
-  <header>
-	<div>HOLA</div>
-  </header>
-
-  <body>
+<Layout title="Alcalde">
+  <main class="h-[calc(100vh-4rem)] w-full flex items-center justify-center">
     <FlipBook client:only="react" />
-  </body>
-</html>
+  </main>
+</Layout>
