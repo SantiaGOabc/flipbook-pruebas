@@ -1,0 +1,815 @@
+/* =========================================================
+   EXPERIENCIA DEL LIBRO
+   Fases (clase en .experience): is-intro -> is-opening -> is-reading
+   ========================================================= */
+
+.experience {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(88, 28, 135, 0.18), transparent 55%),
+    radial-gradient(ellipse at 85% 50%, rgba(88, 28, 135, 0.10), transparent 45%),
+    linear-gradient(to right, #0a0014, #050505 35%, #050505 65%, #0a0014);
+}
+
+/* =========================================================
+   FASE INTRO — textos + libro decorativo
+   ========================================================= */
+
+.experience__intro {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+  padding: 0 6%;
+  transition: opacity 0.4s ease;
+}
+
+/* Al arrancar, toda la intro se desvanece (rápido) y deja ver el libro. */
+.is-opening .experience__intro {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro__copy {
+  max-width: 460px;
+  color: #fff;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Al arrancar, "las letras del lado izquierdo desaparecen". */
+.is-opening .intro__copy,
+.is-reading .intro__copy {
+  opacity: 0;
+  transform: translateX(-40px);
+  pointer-events: none;
+}
+
+.intro__badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #a855f7;
+  margin-bottom: 0.75rem;
+}
+
+.intro__title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 0.3rem;
+}
+
+.intro__tagline {
+  font-size: 1.1rem;
+  color: #a1a1aa;
+  margin-bottom: 1.2rem;
+}
+
+.intro__desc {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #71717a;
+  margin-bottom: 2rem;
+}
+
+.btn-start {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+}
+
+.btn-start:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.55);
+}
+
+/* Libro decorativo (usa .book de global.css). Al arrancar "vuela" al centro. */
+.intro__book {
+  perspective: 1200px;
+}
+
+.is-opening .intro__book {
+  animation: bookFlyToCenter 0.5s ease forwards;
+}
+
+@keyframes bookFlyToCenter {
+  0%   { transform: translateX(0) scale(1); opacity: 1; }
+  100% { transform: translateX(-14%) scale(1.15); opacity: 0; }
+}
+
+/* =========================================================
+   EL LIBRO (flipbook)
+   ========================================================= */
+
+/* El flipbook real sólo existe en 'opening' y 'reading' (ver BookExperience).
+   Aparece con un fundido suave para que no haya un corte brusco. */
+.experience__stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 2200px;
+  animation: stageIn 0.45s ease both;
+}
+
+@keyframes stageIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.stage__book {
+  width: min(92vw, 1040px);
+  height: min(76vh, 720px);
+  transform: scale(1);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
+}
+
+/* Durante la lectura el libro queda muy difuminado al fondo. */
+.is-reading .stage__book {
+  transform: scale(0.9);
+  filter: blur(13px) brightness(0.38);
+}
+
+.stage__loading {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Hojas del flipbook (decorativas: el contenido va en el overlay) ---- */
+
+.stage-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(120deg, #fdfaf5, #f3ece2);
+  color: #2b2b2b;
+  overflow: hidden;
+}
+
+.stage-page__eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #b45309;
+}
+
+.stage-page__title {
+  margin-top: 14px;
+  font-size: clamp(20px, 2.6vw, 30px);
+  line-height: 1.2;
+  color: #1c1917;
+  max-width: 22ch;
+}
+
+.stage-page__index {
+  position: absolute;
+  right: 34px;
+  bottom: 26px;
+  font-size: 84px;
+  font-weight: 800;
+  color: rgba(180, 83, 9, 0.12);
+  line-height: 1;
+}
+
+.stage-cover,
+.stage-back {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(145deg, #2d1054, #1a0633 45%, #0f0318);
+  color: #e9d5ff;
+}
+
+.stage-cover__label {
+  font-size: 0.6rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(192, 132, 252, 0.6);
+  margin-bottom: 1rem;
+}
+
+.stage-cover__title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  max-width: 16ch;
+}
+
+.stage-back h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+.stage-back span {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: rgba(192, 132, 252, 0.5);
+}
+
+/* =========================================================
+   OVERLAY DE CONTENIDO — slider a pantalla completa (GSAP)
+   La hoja NO es un recuadro: ocupa todo el ancho de la pantalla.
+   ========================================================= */
+
+.experience__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+/* Oscurece el libro del fondo para que el contenido sea el protagonista. */
+.experience__overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 40%, transparent 30%, rgba(0, 0, 0, 0.6) 100%),
+    linear-gradient(180deg, rgba(8, 4, 16, 0.55), rgba(8, 4, 16, 0.78));
+}
+
+/* Contenedor del slider: las hojas se apilan aquí y se recortan al salir. */
+.slide-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Una hoja: a todo el ancho, sin fondo ni bordes. En transición hay dos.
+   La hoja puede hacer scroll pero SIN barra visible. */
+.slide {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: #f4f0fb;
+  transform: translateZ(0); /* capa propia: evita parpadeos al animar */
+  backface-visibility: hidden;
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* Edge antiguo */
+}
+
+.slide::-webkit-scrollbar {
+  display: none;                  /* Chrome / Safari */
+}
+
+/* Dos columnas: texto a la izquierda, baraja de tarjetas a la derecha.
+   minmax(0,..) evita que un título muy largo desborde la columna. */
+.slide__inner {
+  min-height: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(28px, 5vw, 80px);
+  /* 'safe center': centra, pero si el contenido no cabe se alinea arriba
+     (así una sección con título largo siempre se puede leer/scrollear). */
+  align-items: safe center;
+  padding: clamp(40px, 8vh, 84px) clamp(24px, 7vw, 110px);
+}
+
+.slide__text {
+  max-width: 620px;
+}
+
+/* Cada texto va dentro de .rvl (máscara: overflow hidden). El hijo .rvl__i
+   (un div normal, sin gradiente) sube desde detrás de ese borde -> efecto
+   "aparece de golpe". Animar el div y no el texto con gradiente evita el
+   parpadeo de background-clip. */
+.rvl {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em; /* aire para tildes y descendentes */
+}
+
+.rvl__i {
+  display: block;
+}
+
+/* Número de capítulo, en grande. */
+.slide__index {
+  display: block;
+  font-size: clamp(64px, 9vw, 150px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -3px;
+  color: rgba(168, 85, 247, 0.22);
+}
+
+.slide__eyebrow {
+  display: block;
+  margin-top: 12px;
+  font-size: clamp(11px, 1vw, 13px);
+  letter-spacing: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #c084fc;
+}
+
+/* El título puede ser largo: tamaño contenido, ajuste equilibrado y quiebre. */
+.slide__title {
+  margin: 14px 0 18px;
+  font-size: clamp(22px, 2.8vw, 42px);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  background: linear-gradient(180deg, #ffffff 30%, #cba9f0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.slide__desc {
+  max-width: 58ch;
+  font-size: clamp(13px, 1.25vw, 16px);
+  line-height: 1.7;
+  color: #c8bfe0;
+}
+
+/* ---- Columna derecha: baraja de tarjetas ---- */
+
+.slide__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deck {
+  width: min(100%, 400px);
+}
+
+/* Zona donde se apilan las tarjetas (todas position: absolute). */
+.deck__stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+
+.deck__card {
+  position: absolute;
+  inset: 0;
+  border: none;
+  border-radius: 30px; /* muy redondeado ("círculo") */
+  overflow: hidden;
+  cursor: pointer;
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  background-image: linear-gradient(140deg, rgba(255, 255, 255, 0.18), transparent 55%);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  backface-visibility: hidden;
+}
+
+.deck__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), transparent 55%);
+}
+
+.deck__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.deck__label {
+  position: relative;
+  z-index: 2;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.deck__badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* Flechas manuales SOBRE la baraja (no ocupan alto -> no obligan a hacer scroll). */
+.deck__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 40;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(10, 6, 20, 0.55);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.deck__nav:hover {
+  background: rgba(168, 85, 247, 0.55);
+}
+
+.deck__nav--prev { left: -14px; }
+.deck__nav--next { right: -14px; }
+
+.deck__counter {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  z-index: 40;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(10, 6, 20, 0.55);
+  backdrop-filter: blur(4px);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #e7dcff;
+}
+
+/* ---- Flechas laterales ---- */
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  /* Por encima del slider: si no, la hoja tapaba la flecha "atrás". */
+  z-index: 6;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-arrow:hover:not(:disabled) {
+  background: rgba(168, 85, 247, 0.35);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.nav-arrow--prev { left: 24px; }
+.nav-arrow--next { right: 24px; }
+
+/* =========================================================
+   HOJA DE CIERRE — foto del alcalde + "33" + despedida
+   ========================================================= */
+
+/* Foto en la columna izquierda, ocupando la mayor parte del alto. */
+.slide--cierre .slide__inner--cierre {
+  align-items: center;
+}
+
+.cierre__photo {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+}
+
+/* El "33" gigante va DETRÁS de la foto (menor z-index) y se nota por los
+   bordes de un busto recortado (la foto no tapa todo el cuadro). */
+.cierre__num {
+  position: absolute;
+  z-index: 0;
+  font-size: clamp(180px, 34vw, 460px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -12px;
+  color: rgba(219, 39, 119, 0.16);
+  text-shadow: 0 0 60px rgba(219, 39, 119, 0.25);
+  user-select: none;
+}
+
+.cierre__img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%; /* prioriza el busto (cabeza y hombros) */
+  /* Recorte elíptico: deja ver el "33" asomando por los laterales/bordes. */
+  -webkit-mask-image: radial-gradient(ellipse 62% 78% at 50% 42%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 62% 78% at 50% 42%, #000 62%, transparent 100%);
+}
+
+.slide__eyebrow--cierre {
+  color: #f472b6;
+}
+
+.slide__title--cierre {
+  font-size: clamp(24px, 3vw, 44px);
+}
+
+.slide__desc--cierre {
+  max-width: 52ch;
+}
+
+.cierre__next {
+  margin-top: 8px;
+  font-size: clamp(12px, 1.1vw, 15px);
+  letter-spacing: 1px;
+  color: #f9a8d4;
+}
+
+/* =========================================================
+   HOJA DE FIRMA — "Manfred Reyes Villa" escritura por steps
+   ========================================================= */
+
+.slide.signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.signature__wrap {
+  text-align: center;
+  padding: 40px;
+  max-width: 960px;
+  width: 100%;
+}
+
+.signature__kicker {
+  margin-bottom: 12px;
+  font-size: clamp(11px, 1vw, 13px);
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  color: #f472b6;
+}
+
+/* Tipografía de firma: cursiva elegante. */
+.signature__svg {
+  width: min(94%, 900px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  overflow: visible; /* nunca recorta los floreos de la cursiva */
+}
+
+.signature__text {
+  font-family: "Great Vibes", "Alex Brush", cursive;
+  font-size: 130px;
+  font-weight: 400;
+  fill: #fff;
+  filter: drop-shadow(0 4px 24px rgba(244, 114, 182, 0.35));
+}
+
+.signature__text tspan tspan {
+  opacity: 1; /* estado base: firma completa (la anima GSAP) */
+}
+
+.signature__rule {
+  width: 220px;
+  height: 2px;
+  margin: 18px auto 14px;
+  background: linear-gradient(90deg, transparent, #f472b6, transparent);
+  border-radius: 999px;
+}
+
+.signature__role {
+  margin: 0;
+  font-size: clamp(13px, 1.4vw, 18px);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e9d5ff;
+}
+
+.signature__span {
+  margin: 6px 0 0;
+  font-size: clamp(11px, 1vw, 14px);
+  letter-spacing: 1px;
+  color: #9d92b8;
+}
+
+/* =========================================================
+   VISOR A PANTALLA COMPLETA (LIGHTBOX)
+   ========================================================= */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 3vw, 40px);
+  background: rgba(4, 0, 12, 0.95);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Ocupa toda la pantalla disponible. */
+.lightbox__stage {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.lightbox__media {
+  max-width: 100%;
+  max-height: calc(100% - 48px);
+  width: auto;
+  height: auto;
+  border-radius: 14px;
+  object-fit: contain;
+  background: #000;
+}
+
+.lightbox__box {
+  flex: 1;
+  width: min(92vw, 1200px);
+  max-height: calc(100% - 48px);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.lightbox__caption {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.lightbox__count {
+  color: #a855f7;
+  font-size: 12px;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 22px;
+  right: 26px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightbox__nav:hover {
+  background: rgba(168, 85, 247, 0.4);
+}
+
+.lightbox__nav--prev { left: 20px; }
+.lightbox__nav--next { right: 20px; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 960px) {
+  /* Las dos columnas pasan a una: texto arriba, tarjetas abajo. */
+  .slide__inner {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 34px;
+    padding: 64px 22px 96px;
+  }
+
+  .slide__text { max-width: none; }
+
+  .deck {
+    width: min(100%, 340px);
+    margin: 0 auto;
+  }
+
+  /* Cierre: la foto queda en la columna donde va el texto (arriba). */
+  .cierre__photo {
+    width: 100%;
+    height: 46vh;
+    min-height: 260px;
+  }
+
+  .signature__svg {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .experience__intro {
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .intro__title { font-size: 2.8rem; }
+
+  /* Las flechas van abajo para no tapar el contenido. */
+  .nav-arrow {
+    top: auto;
+    bottom: 16px;
+    transform: none;
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+
+  .nav-arrow:hover:not(:disabled) { transform: scale(1.1); }
+  .nav-arrow--prev { left: calc(50% - 54px); }
+  .nav-arrow--next { right: calc(50% - 54px); }
+}
