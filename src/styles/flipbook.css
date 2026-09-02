@@ -10,18 +10,9 @@
   justify-content: center;
 
   overflow: hidden;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #5b0878 0%,
-      #3b034d 45%,
-      #18001e 100%
-    );
+  background-color: #ffffff;
 }
 
-
-/* Luz ambiental */
 .book-wrapper::before {
   content: "";
 
@@ -37,13 +28,6 @@
 
   border-radius: 50%;
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(255, 106, 0, 0.12) 0%,
-      rgba(255, 106, 0, 0.04) 35%,
-      transparent 70%
-    );
 
   pointer-events: none;
 }
@@ -54,11 +38,12 @@
 
   box-sizing: border-box;
 
-  background: #ffffff;
+  background: #fffffb;
 
   color: #1f2937;
 
   overflow: hidden;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
 }
 
 
