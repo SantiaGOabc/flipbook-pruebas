@@ -1,4 +1,14 @@
 import type { BookContent } from '../../types/book/content'
+import {
+  ALCALDE_PHOTOS,
+  GENTE_PHOTOS,
+  V_PLAYA_TURQUESA,
+  V_LAGUNA_ALALAY,
+  V_TERMINAL_BUSES,
+  V_FEXCO_ARENA,
+  V_PERMISO_VIAJE,
+  V_CLINICA_VETERINARIA,
+} from './media-paths'
 
 export const bookContent: BookContent = {
   city: 'Cochabamba',
@@ -18,7 +28,11 @@ export const bookContent: BookContent = {
       id: 'presentacion',
       title: 'Presentación del alcalde',
       description: 'Relato emotivo y foto traje formal',
-      items: [],
+      items: [
+        { text: 'Manfred Reyes Villa', image: ALCALDE_PHOTOS[0] },
+        { text: 'El alcalde', image: ALCALDE_PHOTOS[1] },
+        { text: 'Formal', image: ALCALDE_PHOTOS[2] },
+      ],
     },
     {
       id: 'crecimiento',
@@ -26,11 +40,11 @@ export const bookContent: BookContent = {
       description:
         'Las fotografías cuentan aquello que muchas veces las palabras no pueden explicar: el paso del tiempo y la transformación de una ciudad. Cochabamba conserva en sus calles, plazas, barrios y edificios la memoria de lo que fue, pero también muestra, en cada avenida y espacio renovado, el impulso de una ciudad que comenzó a proyectarse hacia el futuro.',
       items: [
-        { text: 'Calles' },
-        { text: 'Casas' },
-        { text: 'Gente' },
-        { text: 'Ciudad colonial' },
-        { text: 'Iglesias' },
+        { text: 'Calles', image: GENTE_PHOTOS[0] },
+        { text: 'Casas', image: GENTE_PHOTOS[1] },
+        { text: 'Gente', image: GENTE_PHOTOS[2] },
+        { text: 'Ciudad colonial', image: GENTE_PHOTOS[3] },
+        { text: 'Iglesias', image: GENTE_PHOTOS[4] },
       ],
     },
     {
@@ -51,12 +65,12 @@ export const bookContent: BookContent = {
       id: 'puentes-pasos-desnivel',
       title: 'Pioneros en la implementación de pasos a desnivel y puentes',
       items: [
-        { text: 'Puente Cala Cala 1993', hasVideo: true },
-        { text: 'Puente Los Andes entre las serranías de Cerro Verde y San Miguel 1993', hasVideo: true },
-        { text: 'Puente Kyllmann 1994', hasVideo: true },
-        { text: 'Viaducto 1996', hasVideo: true },
-        { text: 'Puente Antezana 1996', hasVideo: true },
-        { text: 'Puente Muyurina 2004', hasVideo: true },
+        { text: 'Puente Cala Cala 1993', image: ALCALDE_PHOTOS[0] },
+        { text: 'Puente Los Andes entre las serranías de Cerro Verde y San Miguel 1993', image: ALCALDE_PHOTOS[1] },
+        { text: 'Puente Kyllmann 1994', image: ALCALDE_PHOTOS[2] },
+        { text: 'Viaducto 1996', image: ALCALDE_PHOTOS[3] },
+        { text: 'Puente Antezana 1996', image: ALCALDE_PHOTOS[4] },
+        { text: 'Puente Muyurina 2004', image: ALCALDE_PHOTOS[5] },
       ],
     },
     {
@@ -78,23 +92,23 @@ export const bookContent: BookContent = {
       id: 'ciudad-jardin',
       title: 'Ciudad Jardín: Áreas verdes y parques',
       items: [
-        { text: 'Parque de educación vial', hasVideo: true },
-        { text: 'Parque del niño', hasVideo: true },
-        { text: 'Parque Mariscal Santa Cruz 1998', hasVideo: true },
-        { text: 'Parque Kanata', hasVideo: true },
-        { text: 'Parque San Pedro', hasVideo: true },
-        { text: 'Plaza 14 de septiembre', hasVideo: true },
-        { text: 'Plaza Colón', hasVideo: true },
-        { text: 'Plaza Recoleta', hasVideo: true },
-        { text: 'Plaza Quintanilla', hasVideo: true },
-        { text: 'Plaza de las banderas', hasVideo: true },
+        { text: 'Parque de educación vial', image: GENTE_PHOTOS[5] },
+        { text: 'Parque del niño', image: GENTE_PHOTOS[6] },
+        { text: 'Parque Mariscal Santa Cruz 1998', image: GENTE_PHOTOS[7] },
+        { text: 'Parque Kanata', image: GENTE_PHOTOS[8] },
+        { text: 'Parque San Pedro', image: GENTE_PHOTOS[9] },
+        { text: 'Plaza 14 de septiembre', image: GENTE_PHOTOS[10] },
+        { text: 'Plaza Colón', image: GENTE_PHOTOS[11] },
+        { text: 'Plaza Recoleta', image: GENTE_PHOTOS[12] },
+        { text: 'Plaza Quintanilla', image: GENTE_PHOTOS[13] },
+        { text: 'Plaza de las banderas', image: GENTE_PHOTOS[14] },
       ],
     },
     {
       id: 'desayuno-escolar',
       title: 'Pioneros en la implementación del Desayuno Escolar en Bolivia',
       description: '1994, logrando que se instituya a nivel nacional en beneficio de miles de estudiantes.',
-      items: [{ text: 'Desayuno Escolar 1994', hasVideo: true }],
+      items: [{ text: 'Desayuno Escolar 1994', image: ALCALDE_PHOTOS[6] }],
     },
     {
       id: 'iluminacion',
@@ -118,19 +132,19 @@ export const bookContent: BookContent = {
       id: 'cristo-concordia',
       title: 'Cristo de la Concordia',
       description: 'Un símbolo que se convirtió en el rostro de Cochabamba 1994',
-      items: [{ text: 'Cristo de la Concordia 1994', hasVideo: true }],
+      items: [{ text: 'Cristo de la Concordia 1994', image: ALCALDE_PHOTOS[0] }],
     },
     {
       id: 'teleferico',
       title: 'Primer Teleférico de Bolivia',
       description: '1999',
-      items: [{ text: 'Primer Teleférico de Bolivia 1999', hasVideo: true }],
+      items: [{ text: 'Primer Teleférico de Bolivia 1999', image: ALCALDE_PHOTOS[1] }],
     },
     {
       id: 'peaton-ciclista',
       title: 'Día del peatón y del ciclista',
       description: 'Iniciativa impulsada por Manfred Reyes Villa 1999 / Ciclovía 1999',
-      items: [{ text: 'Ciclovía 1999', hasVideo: true }],
+      items: [{ text: 'Ciclovía 1999', image: GENTE_PHOTOS[0] }],
     },
     {
       id: 'ciudad-suenos',
@@ -145,7 +159,7 @@ export const bookContent: BookContent = {
       description:
         'La emergencia sanitaria dejó una enseñanza: la infraestructura y el equipamiento médico pueden marcar la diferencia entre la vida y la muerte. Fortalecer el sistema de salud fue primordial; se priorizó la implementación de la primera planta criogénica municipal de oxígeno, se gestionó la entrega de unidades de terapia intensiva (UTI), equipamiento hospitalario y una red municipal de ambulancias destinadas a salvar vidas.',
       items: [
-        { text: 'Primera Planta Criogénica Municipal de Oxígeno - ubicada en el Hospital del Norte', hasVideo: true },
+        { text: 'Primera Planta Criogénica Municipal de Oxígeno - ubicada en el Hospital del Norte', image: ALCALDE_PHOTOS[2] },
         { text: 'Unidades de terapia intensiva - Hospital del Norte y Sud' },
         { text: 'Red Municipal de Ambulancias / línea gratuita 162' },
         { text: 'Equipamiento hospitales: Tomógrafo - Hospital Cochabamba' },
@@ -157,7 +171,7 @@ export const bookContent: BookContent = {
         { text: 'Campañas de Cirugías gratuitas de manos y pies "Manitos Arriba"' },
         { text: 'Centro de Salud Ambulatorio "Gloria" D.9' },
         { text: 'Centro de Salud Integral Villa Israel D.9' },
-        { text: 'Clínica veterinaria y centro municipal de Rehabilitación y Adiestramiento Canino - Zona Chimba' },
+        { text: 'Clínica veterinaria y centro municipal de Rehabilitación y Adiestramiento Canino - Zona Chimba', video: V_CLINICA_VETERINARIA },
       ],
     },
     {
@@ -166,7 +180,7 @@ export const bookContent: BookContent = {
       description:
         'Garantizar agua significa garantizar salud, dignidad y oportunidades. La ampliación de redes, sistemas de abastecimiento, colectores y proyectos de saneamiento se convirtió en uno de los principales desafíos de la gestión municipal.',
       items: [
-        { text: 'Planta de tratamiento de aguas residuales de Albarrancho. La primera de Bolivia y una de las más grandes de Latinoamérica.', hasVideo: true },
+        { text: 'Planta de tratamiento de aguas residuales de Albarrancho. La primera de Bolivia y una de las más grandes de Latinoamérica.', image: ALCALDE_PHOTOS[3] },
         { text: 'Renovación sistema de agua potable centro de la ciudad' },
         { text: 'Cobertura 96% agua potable' },
         { text: 'Ampliaciones y renovaciones de servicios básicos (Agua Potable y Alcantarillado Sanitario)' },
@@ -182,14 +196,14 @@ export const bookContent: BookContent = {
       description:
         'La Ciudad Jardín y de la Eterna Primavera renueva su esencia con plazas, parques y espacios llenos de color y vegetación. Hoy, ese legado se proyecta hacia el futuro con la recuperación de áreas verdes, la creación de nuevos espacios de encuentro y la implementación del Plan Maestro de Forestación y Reforestación Municipal, Bosques Urbanos y Arborizaci\u00f3n, consolidando a la ciudad como un verdadero pulmón ecológico para las nuevas generaciones.',
       items: [
-        { text: 'Parque de la Integración - atractivo recreacional con piscina, plaza de comidas y juegos ubicado en el D.9 zona sur', hasVideo: true },
-        { text: 'Plaza Julio León Prado D.10', hasVideo: true },
+        { text: 'Parque de la Integración - atractivo recreacional con piscina, plaza de comidas y juegos ubicado en el D.9 zona sur', image: GENTE_PHOTOS[1] },
+        { text: 'Plaza Julio León Prado D.10', image: GENTE_PHOTOS[2] },
         { text: 'Prado Av. Humberto Asón' },
         { text: 'La "Casa de Piedra", un nuevo paraje turístico en la llajta' },
         { text: 'Jardineras centrales y áreas verdes (emoticones, mariposas y pavos)' },
         { text: 'Parques (Familia, Vial, El pulpo, Autonomía, Bicentenario, Oblitas, Kanata, Mariscal Santa Cruz)' },
-        { text: 'Bosques urbanos (Fidel Anze, Lincoln, Excombatientes, Demetrio Canelas, Esferas Florales)', hasVideo: true },
-        { text: 'Remozado y mejoramiento fuentes plaza de las Banderas y Recoleta', hasVideo: true },
+        { text: 'Bosques urbanos (Fidel Anze, Lincoln, Excombatientes, Demetrio Canelas, Esferas Florales)', image: GENTE_PHOTOS[3] },
+        { text: 'Remozado y mejoramiento fuentes plaza de las Banderas y Recoleta', image: GENTE_PHOTOS[4] },
       ],
     },
     {
@@ -204,7 +218,7 @@ export const bookContent: BookContent = {
       title: 'Cocha, Ciudad Sostenible',
       items: [
         { text: 'Cierre definitivo de ladrilleras' },
-        { text: 'Plan Maestro de Ciclovías (puente metálico, puentes cajón, micropavimento rojo)', hasVideo: true },
+        { text: 'Plan Maestro de Ciclovías (puente metálico, puentes cajón, micropavimento rojo)', image: ALCALDE_PHOTOS[4] },
         { text: 'Centro de Inspección Vehicular Ambiental (CIVAM)' },
         { text: 'Centro de Educación Ambiental Municipal (CEAM)' },
         { text: 'Rompiendo Aceras - Iniciativa de arborización urbana de la ciudad, diseñada para romper el cemento de las veredas del centro histórico y plantar árboles en su lugar.' },
@@ -217,8 +231,8 @@ export const bookContent: BookContent = {
       description:
         'Cochabamba vuelve a mirar hacia sus espejos de agua como espacios de vida, encuentro y recreación. La recuperación de la Laguna Alalay y Coña Coña se convirtió en uno de los grandes desafíos ambientales de la ciudad. Las labores de dragado y tratamiento en Alalay permitieron avanzar en la recuperación del espejo de agua y del ecosistema asociado. Cumpliendo el compromiso de devolver a la ciudad espacios naturales renovados, proteger sus ecosistemas y generar nuevos lugares para disfrutar en familia.',
       items: [
-        { text: 'Dragado y recuperación de la Laguna Alalay', hasVideo: true },
-        { text: 'Complejo Recreacional Coña Coña D.4 - espacio público de recreación y turismo con playa artificial.', hasVideo: true },
+        { text: 'Dragado y recuperación de la Laguna Alalay', video: V_LAGUNA_ALALAY },
+        { text: 'Complejo Recreacional Coña Coña D.4 - espacio público de recreación y turismo con playa artificial.', video: V_PLAYA_TURQUESA },
       ],
     },
     {
@@ -227,7 +241,7 @@ export const bookContent: BookContent = {
       description:
         'El gobierno municipal ha destinado importantes esfuerzos a la construcción, ampliación y mejoramiento de infraestructuras educativas, beneficiando a miles de estudiantes con ambientes dignos, modernos y adecuados para aprender. Cada aula renovada y cada espacio equipado representan una apuesta por el talento, los sueños y las capacidades de las nuevas generaciones, brindándoles mejores herramientas para construir el futuro de nuestra ciudad y de Bolivia.',
       items: [
-        { text: 'Construcción de nuevas infraestructuras educativas', hasVideo: true },
+        { text: 'Construcción de nuevas infraestructuras educativas', image: ALCALDE_PHOTOS[5] },
         { text: 'U.E. BUENAS NUEVAS A-B D.6' },
         { text: 'U.E. INNOVA BELÉN D.15' },
         { text: 'U.E. SAN PEDRO SECUNDARIA D.9' },
@@ -252,8 +266,8 @@ export const bookContent: BookContent = {
       description:
         'La infraestructura vial volvió a ocupar un lugar central en la transformación de Cochabamba. Puentes, distribuidores, pavimento rígido, asfaltos, recarpetados y nuevas conexiones buscan responder a una ciudad que crece y necesita desplazarse mejor.',
       items: [
-        { text: 'Distribuidor Quintanilla', hasVideo: true },
-        { text: 'Distribuidor Av. Perú y Av. Blanco Galindo', hasVideo: true },
+        { text: 'Distribuidor Quintanilla', image: ALCALDE_PHOTOS[6] },
+        { text: 'Distribuidor Av. Perú y Av. Blanco Galindo', image: ALCALDE_PHOTOS[0] },
         { text: 'Reposición de la plataforma del "Puente caído" de la Av. 6 de agosto e Independencia' },
         { text: 'Pavimento rígido Av. París D.8' },
         { text: 'Pavimento rígido Av. Pisiga D.14' },
@@ -266,7 +280,7 @@ export const bookContent: BookContent = {
         { text: 'Asfalto Av. Circunvalación oeste - Parque Bicentenario' },
         { text: 'Recarpetados avenidas estructurantes: Villarroel, Santa Cruz, Juana Azurduy, Pando' },
         { text: 'Reconfiguración rotonda Muyurina D.11' },
-        { text: 'Túnel de la Integración entre Cercado (D.7) y Sacaba', hasVideo: true },
+        { text: 'Túnel de la Integración entre Cercado (D.7) y Sacaba', image: ALCALDE_PHOTOS[1] },
         { text: 'Instalación de postes dodecágones en principales avenidas' },
       ],
     },
@@ -279,8 +293,8 @@ export const bookContent: BookContent = {
         { text: 'Contenedores Soterrados - Sistema moderno de recolección de basura bajo tierra que permite a los vecinos botar sus residuos a cualquier hora, obra pionera en Bolivia.' },
         { text: 'Cambio de aceras inclusivas en el Casco Viejo' },
         { text: 'Renovación de Alumbrado Público a Tecnología LED' },
-        { text: 'Construcción del Edificio Municipal D.10', hasVideo: true },
-        { text: 'Accesos a la Nueva Terminal de Buses (D.5 y D.9)', hasVideo: true },
+        { text: 'Construcción del Edificio Municipal D.10', image: ALCALDE_PHOTOS[2] },
+        { text: 'Accesos a la Nueva Terminal de Buses (D.5 y D.9)', video: V_TERMINAL_BUSES },
       ],
     },
     {
@@ -289,13 +303,13 @@ export const bookContent: BookContent = {
       description:
         'Cuando las ideas se suman, el desarrollo multiplica su fuerza. El municipio abre nuevas oportunidades a través de alianzas que unen la visión pública con la iniciativa privada, convirtiendo proyectos en espacios para el encuentro, la inversión, el entretenimiento y el desarrollo económico. La transformación de la FEXCO y la incorporación de nuevos escenarios reflejan una nueva forma de impulsar infraestructura y generar oportunidades para la ciudad.',
       items: [
-        { text: 'Feria Exposición Internacional de Cochabamba (FEXCO)', hasVideo: true },
+        { text: 'Feria Exposición Internacional de Cochabamba (FEXCO)', image: ALCALDE_PHOTOS[3] },
         { text: 'Pórtico de acceso principal' },
         { text: 'Pabellón KANATA' },
         { text: 'Pabellón del Emprendedor y artesanos' },
-        { text: 'Ampliación Plaza de Comidas', hasVideo: true },
-        { text: 'Fexco Arena', hasVideo: true },
-        { text: 'Auditorio Fexco', hasVideo: true },
+        { text: 'Ampliación Plaza de Comidas', image: GENTE_PHOTOS[5] },
+        { text: 'Fexco Arena', video: V_FEXCO_ARENA },
+        { text: 'Auditorio Fexco', image: GENTE_PHOTOS[6] },
         { text: 'Karting' },
         { text: 'Construcción Complejo Deportivo de Pádel (APP)' },
         { text: 'Iluminación camino al Cristo de la Concordia' },
@@ -335,10 +349,10 @@ export const bookContent: BookContent = {
       description:
         'La tecnología se convierte en servicio cuando está al alcance de todos, avanza hacia una nueva forma de vivir y gestionar la ciudad, incorporando innovación, conectividad y herramientas digitales para hacer más ágiles los servicios municipales y acercarlos a la población. La digitalización de trámites, pagos QR, internet gratuito y una red propia de 500 kilómetros de fibra óptica conectan escuelas, centros de salud, plazas y espacios públicos. A esta transformación se suma el impulso al talento tecnológico, construyendo una ciudad más moderna, accesible, eficiente y preparada para el futuro.',
       items: [
-        { text: 'Digitalización de los servicios municipales (permisos de viaje, CochaMarket, Visita Cocha)', hasVideo: true },
+        { text: 'Digitalización de los servicios municipales (permisos de viaje, CochaMarket, Visita Cocha)', video: V_PERMISO_VIAJE },
         { text: 'Implementación de pagos QR a través de la app INNOVA' },
-        { text: 'Semáforos Inteligentes Sonoros', hasVideo: true },
-        { text: 'Paneles Led y Señalética inteligente', hasVideo: true },
+        { text: 'Semáforos Inteligentes Sonoros', image: ALCALDE_PHOTOS[4] },
+        { text: 'Paneles Led y Señalética inteligente', image: ALCALDE_PHOTOS[5] },
         { text: 'Fortalecimiento del talento tecnológico (Concurso Nacional de Programación "Cocha Somos Innovación" y Feria Tecnológica "Cocha Innova")' },
         { text: 'Centro de Atención Virtual y la línea gratuita 151 para trámites y consultas de la población' },
         { text: 'Internet gratuito y Wifi libre' },
@@ -352,8 +366,8 @@ export const bookContent: BookContent = {
       description:
         'Cochabamba guarda en sus calles, monumentos, teatros y en la música de su gente una identidad que atraviesa generaciones. Hoy, esa memoria vuelve a cobrar vida con la preservación de la Torre de la Catedral Metropolitana, la restauración del Teatro Achá y el fortalecimiento de la Orquesta Sinfónica, los Coros y la Banda Municipal. Cada nota, cada escenario y cada piedra restaurada cuentan quiénes somos y de dónde venimos.',
       items: [
-        { text: 'Preservación Torre Catedral Metropolitana de Cochabamba', hasVideo: true },
-        { text: 'Orquesta Sinfónica Municipal', hasVideo: true },
+        { text: 'Preservación Torre Catedral Metropolitana de Cochabamba', image: ALCALDE_PHOTOS[6] },
+        { text: 'Orquesta Sinfónica Municipal', image: GENTE_PHOTOS[0] },
         { text: 'Coro Municipal y Coro de niños' },
         { text: 'Restauración del Teatro Achá - Remodelación de camerinos, cubiertas, nuevas butacas, sonido entre otros' },
         { text: 'Recuperación de espacio para la construcción del Teatro Municipal D.12' },
@@ -369,9 +383,9 @@ export const bookContent: BookContent = {
         { text: 'Apoyo y fomento al deporte (dotación de material deportivo, trofeos, reconocimientos)' },
         { text: 'Campeonatos internacionales, nacionales, departamentales y municipales' },
         { text: 'Campos deportivos, canchas múltiples, entre otros' },
-        { text: 'Juegos Universitarios "Cap. Manfred Reyes Villa"', hasVideo: true },
+        { text: 'Juegos Universitarios "Cap. Manfred Reyes Villa"', image: GENTE_PHOTOS[1] },
         { text: 'Escuelas deportivas municipales' },
-        { text: 'Reapertura piscina Julio León Prado', hasVideo: true },
+        { text: 'Reapertura piscina Julio León Prado', image: GENTE_PHOTOS[2] },
         { text: 'Complejo Deportivo Los Pinos Japón D.1' },
       ],
     },
@@ -384,10 +398,10 @@ export const bookContent: BookContent = {
         { text: 'Ley Municipal de Corresponsabilidad en el Trabajo del Cuidado no Remunerado, para la Igualdad de Oportunidades' },
         { text: 'Centros Infantiles municipales' },
         { text: 'Ludotecas municipales' },
-        { text: 'Parvulario Edificio Municipal', hasVideo: true },
+        { text: 'Parvulario Edificio Municipal', image: GENTE_PHOTOS[3] },
         { text: 'Línea de Atención al Adolescente (LIA)' },
         { text: 'Centro de Atención Integral a la Familia (CAIF)' },
-        { text: 'Línea de emergencias inclusivas (interpretación señas)', hasVideo: true },
+        { text: 'Línea de emergencias inclusivas (interpretación señas)', image: GENTE_PHOTOS[4] },
       ],
     },
     {
@@ -401,10 +415,10 @@ export const bookContent: BookContent = {
         { text: '"Cocha se reactiva"' },
         { text: 'Ferias "CochaEmprende"' },
         { text: 'Mercado Integración del Sur' },
-        { text: 'Conclusión del Mercado Coraca D.4', hasVideo: true },
-        { text: 'Construcción Mercado Calatayud', hasVideo: true },
-        { text: 'Construcción Mercado Papa Paulo', hasVideo: true },
-        { text: 'Construcción Plaza de Comidas Islas del Sur D.6', hasVideo: true },
+        { text: 'Conclusión del Mercado Coraca D.4', image: ALCALDE_PHOTOS[0] },
+        { text: 'Construcción Mercado Calatayud', image: ALCALDE_PHOTOS[1] },
+        { text: 'Construcción Mercado Papa Paulo', image: ALCALDE_PHOTOS[2] },
+        { text: 'Construcción Plaza de Comidas Islas del Sur D.6', image: ALCALDE_PHOTOS[3] },
       ],
     },
     {

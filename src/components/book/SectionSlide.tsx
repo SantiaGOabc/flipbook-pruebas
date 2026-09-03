@@ -2,6 +2,7 @@ import { forwardRef, useMemo } from 'react'
 import type { BookSection } from '../../types/book/content'
 import { getSectionMedia } from './media'
 import MediaDeck from './MediaDeck'
+import MobileSheet from './MobileSheet'
 
 interface SectionSlideProps {
   section: BookSection
@@ -118,6 +119,9 @@ const SectionSlide = forwardRef<HTMLDivElement, SectionSlideProps>(({ section, n
           <MediaDeck key={section.id} items={media} />
         </div>
       </div>
+
+      {/* Panel inferior solo en tablets/móvil (oculto en escritorio). */}
+      <MobileSheet section={section} number={number} />
     </div>
   )
 })

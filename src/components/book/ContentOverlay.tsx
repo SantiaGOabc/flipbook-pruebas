@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import type { BookSection } from '../../types/book/content'
 import SectionSlide from './SectionSlide'
@@ -39,6 +39,45 @@ export default function ContentOverlay({
 
   const frontRef = useRef<HTMLDivElement>(null)
   const backRef = useRef<HTMLDivElement>(null)
+
+  // ---- Gesto vertical estilo TikTok (solo tablets/móvil) ----
+  // Deslizar hacia arriba -> siguiente; hacia abajo -> anterior.
+  const overlayRef = useRef<HTMLDivElement | null>(null)
+  const swipeRef = useRef<{ startY: number; startX: number; active: boolean }>({
+    startY: 0, startX: 0, active: false,
+  })
+
+  useEffect(() => {
+    const el = overlayRef.current
+    if (!el) return
+    const mq = window.matchMedia('(max-width: 960px)')
+    if (!mq.matches) return
+
+    const onStart = (e: PointerEvent) => {
+      const target = e.target as HTMLElement
+      // No secuestramos el gesto del bottom sheet ni de su contenido.
+      if (target.closest('.sheet')) return
+      swipeRef.current = { startY: e.clientY, startX: e.clientX, active: true }
+    }
+    const onEnd = (e: PointerEvent) => {
+      const s = swipeRef.current
+      swipeRef.current.active = false
+      if (!s.active) return
+      const dy = e.clientY - s.startY
+      const dx = e.clientX - s.startX
+      if (Math.abs(dy) < 60 || Math.abs(dy) < Math.abs(dx)) return
+      if (dy < 0) onNext()
+      else onPrev()
+    }
+
+    el.addEventListener('pointerdown', onStart)
+    el.addEventListener('pointerup', onEnd)
+    return () => {
+      el.removeEventListener('pointerdown', onStart)
+      el.removeEventListener('pointerup', onEnd)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [canPrev, canNext, inTransition, onPrev, onNext])
 
   const frontIsSig = committed.index >= total
   const backIsSig = index >= total
@@ -88,7 +127,7 @@ export default function ContentOverlay({
   }, [navKey])
 
   return (
-    <div className="experience__overlay">
+    <div className="experience__overlay" ref={overlayRef}>
       <button
         className="nav-arrow nav-arrow--prev"
         onClick={onPrev}
