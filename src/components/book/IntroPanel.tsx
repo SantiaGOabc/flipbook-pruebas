@@ -1,22 +1,28 @@
+import type { BookContent } from '../../types/book/content'
+
 interface IntroPanelProps {
   /** Arranca la experiencia (libro al centro + apertura). */
   onStart: () => void
+  /** Contenido centralizado (textos y media) de la portada/intro. */
+  content: BookContent
 }
 
 /**
  * Pantalla inicial: textos a la izquierda + libro decorativo a la derecha.
- * Al pulsar "Iniciar la experiencia" todo esto se desvanece.
+ * Se alimenta de `content` (content.ts); al pulsar "Iniciar" todo se desvanece.
  */
-export default function IntroPanel({ onStart }: IntroPanelProps) {
+export default function IntroPanel({ onStart, content }: IntroPanelProps) {
   return (
     <div className="experience__intro">
       <div className="intro__copy">
-        <span className="intro__badge">Bolivia</span>
-        <h1 className="intro__title">Cochabamba</h1>
-        <p className="intro__tagline">La Ciudad de la Eterna Primavera</p>
-        <p className="intro__desc">
-          Historia, transformación y futuro de la mejor ciudad de Bolivia.
-        </p>
+        <span className="intro__badge">{content.badge}</span>
+        <h1 className="intro__title">{content.city}</h1>
+        <p className="intro__tagline">{content.tagline}</p>
+        <p className="intro__desc">{content.intro}</p>
+
+        <ul className="intro__tags">
+          <li>{content.year}</li>
+        </ul>
 
         <button className="btn-start" onClick={onStart}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -30,13 +36,21 @@ export default function IntroPanel({ onStart }: IntroPanelProps) {
       <div className="intro__book">
         <div className="book">
           <div className="book-face book-front">
-            <div className="cover-inner">
-              <div className="cover-rule"></div>
-              <span className="cover-category">Guía Turística</span>
-              <h2 className="cover-title">Cochabamba</h2>
-              <p className="cover-year">2026</p>
-              <div className="cover-rule"></div>
-            </div>
+            {content.cover?.image ? (
+              <img
+                className="cover-poster"
+                src={content.cover.image}
+                alt={`Portada de ${content.city}`}
+              />
+            ) : (
+              <div className="cover-inner">
+                <div className="cover-rule"></div>
+                <span className="cover-category">{content.subtitle}</span>
+                <h2 className="cover-title">{content.city}</h2>
+                <p className="cover-year">{content.year}</p>
+                <div className="cover-rule"></div>
+              </div>
+            )}
           </div>
           <div className="book-face book-back"></div>
           <div className="book-stack">

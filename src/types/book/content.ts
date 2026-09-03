@@ -16,7 +16,24 @@ export interface BookSection {
 }
 
 export interface BookContent {
+  /** Ciudad protagonista (título grande de la portada/intro). */
+  city: string
+  /** Etiqueta pequeña sobre el título (ej: país). */
+  badge: string
+  /** Slogan o línea secundaria bajo el título. */
+  tagline: string
+  /** Descripción introductoria de la experiencia. */
+  intro: string
+  /** Año de la edición (mostrado como etiqueta). */
+  year: string
+  /** Título largo de la portada del libro. */
   title: string
+  /** Subtítulo de la portada del libro. */
   subtitle: string
+  /** Media de la portada del libro (opcional). */
+  cover?: {
+    image?: string
+    video?: string
+  }
   sections: BookSection[]
 }

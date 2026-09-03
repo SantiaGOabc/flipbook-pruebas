@@ -1,8 +1,17 @@
 import type { BookContent } from '../../types/book/content'
 
 export const bookContent: BookContent = {
+  city: 'Cochabamba',
+  badge: 'Bolivia',
+  tagline: 'La Ciudad de la Eterna Primavera',
+  intro:
+    'Descubre la riqueza cultural, los sabores ancestrales y los paisajes que hacen de Cochabamba un destino único en el corazón de Sudamérica.',
+  year: '2026',
   title: 'Cocha la mejor ciudad de Bolivia',
   subtitle: 'Álbum de fotos',
+  cover: {
+    image: '/images/portada.png',
+  },
 
   sections: [
     {

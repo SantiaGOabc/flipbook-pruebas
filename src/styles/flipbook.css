@@ -28,7 +28,6 @@
 
   border-radius: 50%;
 
-
   pointer-events: none;
 }
 
@@ -54,6 +53,8 @@
   width: 100%;
   height: 100%;
 
+  box-sizing: border-box;
+
   display: flex;
 
   align-items: center;
@@ -62,6 +63,7 @@
   overflow: hidden;
 
   background: #ffff;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -427,6 +429,36 @@
 
   color: #888 !important;
 }
+
+
+/* =========================================================
+   ESTADÍSTICAS
+   ========================================================= */
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 8px 0 12px;
+  padding: clamp(14px, 2vw, 22px);
+  border-left: 3px solid #ff6a00;
+  background: #f8f8f8;
+  flex-shrink: 0;
+}
+
+.stat-box strong {
+  font-size: clamp(30px, 4.5vw, 48px);
+  line-height: 1;
+  color: #1E5A9C;
+  letter-spacing: -1px;
+}
+
+.stat-box span {
+  margin-top: 6px;
+  font-size: clamp(12px, 1.4vw, 15px);
+  color: #4b5563;
+}
+
 
 
 /* =========================================================

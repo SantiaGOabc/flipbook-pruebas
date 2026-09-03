@@ -117,7 +117,7 @@ export default function BookExperience() {
   return (
     <div className={`experience is-${phase}`}>
       {/* Se mantiene durante 'opening' para que se desvanezca en vez de cortar. */}
-      {phase !== 'reading' && <IntroPanel onStart={start} />}
+      {phase !== 'reading' && <IntroPanel onStart={start} content={bookContent} />}
 
       {/* El flipbook real sólo se monta al arrancar (en la intro se ve el
           libro decorativo). Así se evita el parpadeo de carga. */}
